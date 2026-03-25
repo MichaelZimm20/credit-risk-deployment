@@ -16,7 +16,7 @@ import pandas as pd
 # testing model loading 
 def test_model_loading():
     try:
-        model = joblib.load('credit_risk_model/lgbm_credit_risk_model.joblib')
+        model = joblib.load('lgbm_credit_risk_model.joblib')
         assert model is not None
         assert isinstance(model, object) # checking if the model is an object to ensure it loaded 
     except Exception as e:
@@ -26,7 +26,7 @@ def test_model_loading():
 # test feature names load 
 def test_feature_names_loading():
     try:
-        feature_names = joblib.load('credit_risk_model/lgbm_credit_risk_feature.joblib')
+        feature_names = joblib.load('lgbm_credit_risk_feature.joblib')
         assert feature_names is not None
         assert isinstance(feature_names, list) # checking if features_names is a list 
         assert len(feature_names) == 23 # checking if number of features is 23 ( the default number of features from the trained model)
