@@ -20,6 +20,8 @@ jobs:
 
         steps: 
             - uses: actions/checkout@v4 # checks out the code in the repo to help with testing
+              with:
+                lfs: true 
             - name: Set up Python 
               uses: actions/setup-python@v4
               with: 

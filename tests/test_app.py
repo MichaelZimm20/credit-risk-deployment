@@ -26,7 +26,7 @@ def test_model_loading():
 # test feature names load 
 def test_feature_names_loading():
     try:
-        feature_names = joblib.load('lgbm_credit_risk_feature.joblib')
+        feature_names = joblib.load('lgbm_credit_risk_features.joblib')
         assert feature_names is not None
         assert isinstance(feature_names, list) # checking if features_names is a list 
         assert len(feature_names) == 23 # checking if number of features is 23 ( the default number of features from the trained model)
@@ -39,7 +39,7 @@ def test_predict_credit_risk():
     try:
         # load the model and feature names for testing
         model = joblib.load('lgbm_credit_risk_model.joblib')
-        feature_names = joblib.load('lgbm_credit_risk_feature.joblib')
+        feature_names = joblib.load('lgbm_credit_risk_features.joblib')
          
         
         # read the csv using panadas

@@ -24,7 +24,5 @@ jobs:
                 HF_USERNAME: ${{ secrets.HF_USERNAME }} # set in repo secrets, used for authentication to Hugging Face Hub
                 HF_TOKEN: ${{ secrets.HF_TOKEN }}
               run: |
-                curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/huggingface/xet-core/refs/heads/main/git_xet/install.sh | sh
-                git xet install
-                git remote add hf https://huggingface.co/spaces/${HF_USERNAME}/credit-risk-prediction
-                git push --force https://${HF_USERNAME}:${HF_TOKEN}@huggingface.co/spaces/${HF_USERNAME}/credit-risk-prediction main
+                pip install huggingface_hub[hf_xet]
+                huggingface-cli upload ${HF_USERNAME}/credit-risk-prediction . . --repo-type space --token ${HF_TOKEN}
