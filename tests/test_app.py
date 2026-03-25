@@ -38,8 +38,8 @@ def test_feature_names_loading():
 def test_predict_credit_risk():
     try:
         # load the model and feature names for testing
-        model = joblib.load('credit_risk_model/lgbm_credit_risk_model.joblib')
-        feature_names = joblib.load('credit_risk_model/lgbm_credit_risk_feature.joblib')
+        model = joblib.load('lgbm_credit_risk_model.joblib')
+        feature_names = joblib.load('lgbm_credit_risk_feature.joblib')
          
         
         # read the csv using panadas
