@@ -19,10 +19,15 @@ jobs:
               with:
                 fetch-depth: 0 # fetches the entire history of the repo
                 lfs: true # large file storage support for model files (LFS)
+            - name: Set up Python 
+              uses: actions/setup-python@v4
+              with: 
+                python-version: '3.13' # specify the python version to use
             - name: Push to Hugging Face Space hub 
               env: 
                 HF_USERNAME: ${{ secrets.HF_USERNAME }} # set in repo secrets, used for authentication to Hugging Face Hub
                 HF_TOKEN: ${{ secrets.HF_TOKEN }}
               run: |
                 pip install huggingface_hub[hf_xet]
-                python -m huggingface_hub.cli.cli upload ${HF_USERNAME}/credit-risk-prediction . . --repo-type space --token ${HF_TOKEN}
+                python -m huggingface_hub-additional_dependencies
+                python -m huggingface_hub.cli upload ${HF_USERNAME}/credit-risk-prediction . . --repo-type space --token ${HF_TOKEN}
