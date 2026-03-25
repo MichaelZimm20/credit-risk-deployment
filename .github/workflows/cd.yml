@@ -29,4 +29,4 @@ jobs:
                 HF_TOKEN: ${{ secrets.HF_TOKEN }}
               run: |
                 pip install huggingface_hub[hf_xet]
-                python -m huggingface_hub.cli upload ${HF_USERNAME}/credit-risk-prediction . . --repo-type space --token ${HF_TOKEN}
+                hf upload ${HF_USERNAME}/credit-risk-prediction . . --repo-type space --token ${HF_TOKEN}
