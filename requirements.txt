@@ -1,4 +1,4 @@
-/*necessary for gradio app deployment*/
+# necessary for gradio app deployment
 gradio 
 joblib 
 pandas
