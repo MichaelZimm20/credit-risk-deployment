@@ -10,7 +10,7 @@ import pytest
 import joblib 
 import numpy as np
 import pandas as pd
-from app import predict_credit_risk 
+
 
 
 # testing model loading 
