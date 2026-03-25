@@ -43,7 +43,7 @@ def test_predict_credit_risk():
          
         
         # read the csv using panadas
-        sample_csv_df = pd.read_csv('files/sample_credit_risk_data.csv')
+        sample_csv_df = pd.read_csv('files/sample_input.csv')
 
         # filter to just feature_names columns 
         feature_df_columns = sample_csv_df[feature_names].columns.tolist()
