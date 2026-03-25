@@ -1,0 +1,27 @@
+# Continuous Deployment - CD  Workflow for syncing repos to Hugging Face Space from main branch on every run 
+# will host the credit risk pipeline app for deployment, automates this process and verification 
+# production/hosting platform for models 
+
+name: CD - Deployment to Hugging Face Space 
+
+# trigger to push to main, no pull requests will happen here 
+on:
+    push:
+        branches: [main]
+    # manually runs from Github Actions tab, useful for testing and debugging without having users push to main branch 
+    workflow_dispatch: 
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps: 
+            - uses: actions/checkout@v4
+              with:
+                fetch-depth: 0 # fetches the entire history of the repo
+                lfs: true # large file storage support for model files (LFS)
+            - name: Push to Hugging Face Space hub 
+              env: 
+                HF_USERNAME: ${{ secrets.HF_USERNAME }} # set in repo secrets, used for authentication to Hugging Face Hub
+                HF_TOKEN: ${{ secrets.HF_TOKEN }}
+              run: git remote add hf https://huggingface.co/spaces/${HF_USERNAME}/credit-risk-prediction
+                   git push --force https://${HF_USERNAME}:${HF_TOKEN}@huggingface.co/spaces/${HF_USERNAME}/credit-risk-prediction main

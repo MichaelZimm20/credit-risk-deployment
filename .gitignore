@@ -1,0 +1,24 @@
+# Gradio cache from local testing
+.gradio/
+flagged/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Virtual environment
+.venv/
+venv/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Jupyter checkpoints
+.ipynb_checkpoints/

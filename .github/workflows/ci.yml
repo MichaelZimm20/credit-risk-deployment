@@ -1,0 +1,44 @@
+# Continous Integration - CI Workflow for Credit Risk Pipeline Deployment app to GitHub Actions 
+# will run on every push and pull request to the main branch
+# will run test_app.py to validate the app code and model predictions are working as expected 
+
+name: CI - Lint and Test 
+
+# triggers, everytime someone pushes or pull requests to the main branch, this is ran
+on: 
+    push: 
+        branches: [main]
+    pull_request:
+        branches: [main]
+
+permissions:
+    contents: read # checking for code output 
+
+jobs:
+    build: 
+        runs-on: ubuntu-latest
+
+        steps: 
+            - uses: actions/checkout@v4 # checks out the code in the repo to help with testing
+            - name: Set up Python 
+              uses: actions/setup-python@v4
+              with: 
+                python-version: '3.9' # specify the python version to use
+
+            - name: Install dependencies 
+              run: | 
+                python -m pip install --upgrade pip
+                if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+                pip install flake8 pytest # installing linting and pytest library for testing and code style checks
+            # Linting is used to help catch syntax errors and code styling issues, completely optional, but can help with code quality
+            # conforms to my coding styles 
+            - name: Run Lint with flake8 
+              run: | 
+                # stop the build on syntax errors and undefined names 
+                flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+
+                #exit-zero treats all errors as warnings. Github ACtions will not fail but print them in the logs.
+                flake8 . --count --exit-zero --max-complexity=10 --max-line-length=120 --statistics 
+            - name: Run tests with pytest 
+              run: | 
+                pytest tests/test_app.py --maxfail=1 

@@ -1,0 +1,6 @@
+/*necessary for gradio app deployment*/
+gradio 
+joblib 
+pandas
+lightgbm
+numpy
