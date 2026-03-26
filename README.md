@@ -1,3 +1,13 @@
+---
+title: Credit Risk Defaulter Prediction App
+emoji: 📊
+colorFrom: blue
+colorTo: red
+sdk: gradio
+app_file: app.py
+pinned: false
+---
+
 # Credit Risk Defaulter Prediction App
 
 Deploys a LightGBM credit risk model behind a Gradio web interface. Users upload CSV files and receive default predictions with probabilities for each row.
